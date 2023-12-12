@@ -1,1 +1,22 @@
-gjhg
+6th December - 13:31
+
+GitIgnore File failed to track only certain files.
+
+What this means?
+Github and Gitignore allowed certain files which would normally be ignored during a push to git. The most notable and problematic of which was a unity libray folder. In which it attempted to push every single file within the folder.
+Even having resolved the issue I am unaware if any other files/folders were also attempted to be pushed. This is due to the need to recognise the files from an extraordinaryly long list. (This is resolved as well)
+
+Possible causes: (I resolved each of these assuming they were the problem in order to be sure it wouldn't continue affecting the project)
+GitIgnore file was in the wrong folder- Believed it was this since it was in the cloned repository folder rather than within the unity project
+Human error made when cloning the repository- Believed it could've been this since it was unlikely to being anything download such as corruption or an incomplete download related. I had pulled a different project not long before this, thus the belief that this was a human error.
+
+The human error refers to the repository being cloned into the wrong place.
+
+
+How did I resolve it?
+To resolve it I first spent some time to figure out how the gitignore file work largely by following whats written on github about it this was found by a simple google. During this process I saw that some people have had this issue in the past and had to rewrite the gitignore file.
+Additionally I saw there were a few other solutions which seemed to relate more to my issue and possible causes. These being the possible causes listed above. 
+My first step: (this step should have been done later within the resolving process since it ignores a very easy potential fix)
+I first recloned the repository into the correct position. This took multiple attempts due to me misreading the where the project was. To do this I made use of github desktop and cloned it thorugh file clone repository. Putting it in the correct location.
+This had very little to no affect. 
+The second and ultimately the correct fix was to simply move the gitignore file into the unity project folder.
