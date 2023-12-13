@@ -35,6 +35,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""cd1cd1e3-aed4-4d4d-864f-e1bb4d5f8e0c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""123d2b5d-e9bf-4fd1-83fc-2031de1cbf87"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +121,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // PlayerMovment
         m_PlayerMovment = asset.FindActionMap("PlayerMovment", throwIfNotFound: true);
         m_PlayerMovment_WASD = m_PlayerMovment.FindAction("WASD", throwIfNotFound: true);
+        m_PlayerMovment_Camera = m_PlayerMovment.FindAction("Camera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,11 +182,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMovment;
     private IPlayerMovmentActions m_PlayerMovmentActionsCallbackInterface;
     private readonly InputAction m_PlayerMovment_WASD;
+    private readonly InputAction m_PlayerMovment_Camera;
     public struct PlayerMovmentActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerMovmentActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASD => m_Wrapper.m_PlayerMovment_WASD;
+        public InputAction @Camera => m_Wrapper.m_PlayerMovment_Camera;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovment; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -178,6 +201,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @WASD.started -= m_Wrapper.m_PlayerMovmentActionsCallbackInterface.OnWASD;
                 @WASD.performed -= m_Wrapper.m_PlayerMovmentActionsCallbackInterface.OnWASD;
                 @WASD.canceled -= m_Wrapper.m_PlayerMovmentActionsCallbackInterface.OnWASD;
+                @Camera.started -= m_Wrapper.m_PlayerMovmentActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_PlayerMovmentActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_PlayerMovmentActionsCallbackInterface.OnCamera;
             }
             m_Wrapper.m_PlayerMovmentActionsCallbackInterface = instance;
             if (instance != null)
@@ -185,6 +211,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @WASD.started += instance.OnWASD;
                 @WASD.performed += instance.OnWASD;
                 @WASD.canceled += instance.OnWASD;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
             }
         }
     }
@@ -192,5 +221,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerMovmentActions
     {
         void OnWASD(InputAction.CallbackContext context);
+        void OnCamera(InputAction.CallbackContext context);
     }
 }

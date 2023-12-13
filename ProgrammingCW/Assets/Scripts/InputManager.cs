@@ -6,7 +6,14 @@ public class InputManager : MonoBehaviour
 {
 
     PlayerControls PLayerControls;
+
     public Vector2 movementInput;
+    public Vector2 cameraInput;
+
+    public float cameraInputY;
+    public float cameraInputX;
+
+   // public Vector2 movementInput;
     public float verticalInput;
     public float horizontalInput;
 
@@ -16,6 +23,7 @@ public class InputManager : MonoBehaviour
         {
             PLayerControls = new PlayerControls();
             PLayerControls.PlayerMovment.WASD.performed += i => movementInput = i.ReadValue<Vector2>(); //WASD refers to the action with the green box
+            PLayerControls.PlayerMovment.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
         }
 
         PLayerControls.Enable();
@@ -38,6 +46,9 @@ public class InputManager : MonoBehaviour
     {
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x; 
+
+        cameraInputY = cameraInput.y;
+        cameraInputX = cameraInput.x;
     }
 
 }
