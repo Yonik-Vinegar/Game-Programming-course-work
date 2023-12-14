@@ -20,3 +20,13 @@ My first step: (this step should have been done later within the resolving proce
 I first recloned the repository into the correct position. This took multiple attempts due to me misreading the where the project was. To do this I made use of github desktop and cloned it thorugh file clone repository. Putting it in the correct location.
 This had very little to no affect. 
 The second and ultimately the correct fix was to simply move the gitignore file into the unity project folder.
+
+
+6th December - 15:23
+Input Manager not taking any input 
+
+What this means? 
+The script Input Manager was used as a central point to retrieve inputs for all scripts. This however requires the InputSystem package add on to operate and a part of the package is where the problem was. 
+The InputSystem I was using allowed for me to set the keybinds within a section called action under an action map. 
+
+Cause: Calling upon the wrong part of the system with the code. Instead of calling for the action, and thus the keybinds
