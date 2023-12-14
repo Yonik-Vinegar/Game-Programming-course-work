@@ -2,7 +2,7 @@
 
 GitIgnore File failed to track only certain files.
 
-What this means?
+What does this mean?
 Github and Gitignore allowed certain files which would normally be ignored during a push to git. The most notable and problematic of which was a unity libray folder. In which it attempted to push every single file within the folder.
 Even having resolved the issue I am unaware if any other files/folders were also attempted to be pushed. This is due to the need to recognise the files from an extraordinaryly long list. (This is resolved as well)
 
@@ -16,7 +16,7 @@ The human error refers to the repository being cloned into the wrong place.
 How did I resolve it?
 To resolve it I first spent some time to figure out how the gitignore file work largely by following whats written on github about it this was found by a simple google. During this process I saw that some people have had this issue in the past and had to rewrite the gitignore file.
 Additionally I saw there were a few other solutions which seemed to relate more to my issue and possible causes. These being the possible causes listed above. 
-My first step: (this step should have been done later within the resolving process since it ignores a very easy potential fix)
+My first step: (this step should have been done later within the resolving process since it ignores a very easy potential fix and in this case the correct one)
 I first recloned the repository into the correct position. This took multiple attempts due to me misreading the where the project was. To do this I made use of github desktop and cloned it thorugh file clone repository. Putting it in the correct location.
 This had very little to no affect. 
 The second and ultimately the correct fix was to simply move the gitignore file into the unity project folder.
@@ -25,7 +25,7 @@ The second and ultimately the correct fix was to simply move the gitignore file 
 5th December - 15:23
 Input Manager not taking any input 
 
-What this means? 
+What does this mean? 
 The script Input Manager was used as a central point to retrieve inputs for all scripts. This however requires the InputSystem package add on to operate and a part of the package is where the problem was. 
 The InputSystem I was using allowed for me to set the keybinds within a section called action under an action map. 
 
@@ -38,6 +38,32 @@ I quickly noticed the misspelling with PlayerControls and rectified it turning i
 This however didn't work much to my confusion at the time before realising that I wasn't calling on any actions. Thus WASD (the name of the keybind action) was added to the to the part where the Input system was getting called. 
 Leading to the the working code of 
 PLayerControls.PlayerMovment.WASD.performed += i => movementInput = i.ReadValue<Vector2>();
+
+
+5th December- 16:05
+Character falling through the floor
+
+What does this mean?
+The character would slowly fall through the floor after unity was moved into playmode. Due to it not continously checking for a collision.
+
+Cause: Collison Detection was not set to continous.
+
+To resolve it took surprisingly long as I at first believed it was an issue with the code especially within the PlayerLocomotion script since this was the only script to touch the y axis. However after viewing it I realised it had nothing which would lead to it.
+Leading me to check the inspector and more importantly the rigidbody. This is where I realised the cause and rectified it by changing the Collision Detection setting from Discrete to Continous.
+
+For Future reference:
+Check the inspector first and make sure the Collison Detection is on the correct setting.
+
+
+
+6th december - 10:11
+
+Camera not rotating.
+
+What does this mean?
+
+
+
 
 
 
