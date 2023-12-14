@@ -1,4 +1,4 @@
-6th December - 13:31
+5th December - 13:31
 
 GitIgnore File failed to track only certain files.
 
@@ -20,3 +20,24 @@ My first step: (this step should have been done later within the resolving proce
 I first recloned the repository into the correct position. This took multiple attempts due to me misreading the where the project was. To do this I made use of github desktop and cloned it thorugh file clone repository. Putting it in the correct location.
 This had very little to no affect. 
 The second and ultimately the correct fix was to simply move the gitignore file into the unity project folder.
+
+
+5th December - 15:23
+Input Manager not taking any input 
+
+What this means? 
+The script Input Manager was used as a central point to retrieve inputs for all scripts. This however requires the InputSystem package add on to operate and a part of the package is where the problem was. 
+The InputSystem I was using allowed for me to set the keybinds within a section called action under an action map. 
+
+Cause: Calling upon the wrong part of the system with the code. Instead of calling for the action WASD, and thus the keybinds I called upon the Action map which I called PlayerMovment meaning that it wouldn't be acess the keybinds making it so that the player cannot move.
+Additionally I wasn't calling the Input full stop since I misspelt the name I had assigned it. This being PLayerControls. I instead typed PlayerControls. Another misspelling was PlayerMovement since it should have been PlayerMovment.
+
+To resolve it I went to the line of code that was causing the issue this being: (this was easy to find since it is the only line that refers to keys)
+PlayerControls.PlayerMovement.performed += i => movementInput = i.ReadValue<Vector2>();
+I quickly noticed the misspelling with PlayerControls and rectified it turning it to PLayerControls allowing for it to call upon the Input system. Additionally to let it call upon the Action map I needed to recitfy the spelling misktake that was PlayerMovement changing it to PlayerMovment.
+This however didn't work much to my confusion at the time before realising that I wasn't calling on any actions. Thus WASD (the name of the keybind action) was added to the to the part where the Input system was getting called. 
+Leading to the the working code of 
+PLayerControls.PlayerMovment.WASD.performed += i => movementInput = i.ReadValue<Vector2>();
+
+
+
