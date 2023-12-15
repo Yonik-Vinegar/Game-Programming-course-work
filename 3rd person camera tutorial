@@ -251,4 +251,29 @@ Private void RotateCamera()
 
 }
 
+STEP 12 Camera Collision
+Now that we have added two of the three functions with the HandleAllCameraMovements its time to do the third and final one.
+The camera Collision refers to the camera bouncing of a wall rather than clip through it preventing the player from seeing. An essential for a 3rd person game.
+To do this you start it like the rest by making a function:
+private void HandleCameraCollisions()
+    {
+        float targetPosition = defaultPosition; 
+        RaycastHit hit; //RaycastHit is used to get data back from a raycast
+        Vector3 direction = cameraTransform.position - cameraPivot.position;
+        direction.Normalize();
 
+        if (Physics.SphereCast(cameraPivot.transform.position, cameraCollisionRadius, direction, out hit, Mathf.Abs(targetPosition), collisionLayers)) //of the SphereCast hits soemething with a collider it will register it
+            float distance = Vector3.Distance(cameraPivot.position, hit.point); 
+            targetPosition =- (distance - cameraCollisionOffset); //this calculates the distance between the collider the SphereCast hit and the player model
+        }
+
+        if (Mathf.Abs(targetPosition) < minimumCollisionOffSet) 
+        {
+            targetPosition = targetPosition - minimumCollisionOffSet; //calculates the minimum required bounce.
+        }
+
+        cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, 0.2f); //calulates where the camera needs to be in relation to the minimum required bounce
+        cameraTransform.localPosition = cameraVectorPosition; //changes camera position.
+    }
+
+And there you go, you now have a working 3rd person camera.
