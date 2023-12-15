@@ -139,10 +139,20 @@ The first one we will make will handle the movement. So the function and block o
     {
         moveDirection = cameraObject.forward * inputManager.verticalInput; // this will make it so that the player moves in the direction the character is facing.
         moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput; // this will let us move left or right depending on the camera direction
-        moveDirection.Normalize();
-        moveDirection.y = 0;
+        moveDirection.Normalize(); // this keeps the camera direction the same allowing for the player to move to the sides without impacting the camera.
+        moveDirection.y = 0; 
         moveDirection = moveDirection * movementSpeed;
 
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.velocity = movementVelocity;
     }
+
+Add the function handle to the HandleAllMovement function so that it looks like
+public void HandleAllMovement() 
+    {
+        HandleMovement()
+    }
+
+The next function we want to create 
+
+
