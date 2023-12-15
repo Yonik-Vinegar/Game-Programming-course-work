@@ -10,7 +10,7 @@ Then drag MainCamera over the CameraPivot and drop so that CameraPivot is the pa
 Once the camera (I will be referring to all three as the camera unless I name a specific one) transform is at 0,0,0 (position) then click on the cameraPivot select the y position in the inspector and increase or decrease it for the height you want your 3rd person camera to be at. 
 After you have decided on the you must decide on the distance. To do this click on maincamera and using the Z tall move it how far back you want it to be.  This will likely take multiple attempts.
 
-STEP 1 setting up the input system
+STEP 2 setting up the input system (if you came from the movement system tutorial look for 2.5)
 The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager. This is so that we may install the inputsystem that we will be using for this tutorial. 
 
 Once in package manager:
@@ -29,7 +29,14 @@ The third section are the action properties:This is where you will assign how th
 
 So the first thing you will want to do is go to the action map section and click on the cross. This will add a new action map. You can name it whatever you like but remember this is what is happening. I named mine PlayerMovement.
 As you would have noticed when you click on the cross the actions and actions properties also gained some new additions. Firstly click on the drop down arrow(arrow facing down) on the new action here you will see a action called <no binding>. Delete it. The reason why is because this is their is a more effective method for our bindings.
-Once you have deleted the binding double click on the action and rename it whatever you like. I named mine WASD. Once you have finished renaming it go to the action properties section. 
-Change action type to pass through and then control type to vector2 since in this tutorial we will only be working on 2 axis and not all three. If you wish your character to jump or fly then use vector3 since it will give you extra options for that.
+Once you have deleted the binding double click on the action and rename it whatever you like. I named mine Camera. Once you have finished renaming it go to the action properties section. 
+Change action type to pass through and then control type to vector2 since in this tutorial we will only be working on 2 axis and not all three.
 Once you have done this click on the cross and add binding. Then click on the up binding and go to properties (Do NOT click T) click the empty bar then search mouse (look for the one with delta).
 Once you have completed that close the Inputsystem whilst making sure to save it. Then on the right hand of your screen click the tickbox for generate a C# class. This will generate a C# script that you do not need to open for this tutorial.
+
+STEP 2.5  Input System (If you came from Movement system)
+Go into your InputSystem window and at the top of the actions section press the cross. This will create the new action which will be named Camera. set the action type to pass through and control type to vector 2. This is for the same reason as the movement.
+Then instead of deleting your sole binding set it to mouse (delta)
+
+
+Step 3 set up the character (ignore if you came from movement tutorial)
