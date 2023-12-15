@@ -113,5 +113,5 @@ Press Crtl S to save that then go back into unity.
 
 
 Step 6 cameraManager
-The big one
+Create another script and call it CameraManager
 
