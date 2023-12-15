@@ -95,7 +95,7 @@ The reason for it being Y instead of a Z is that since we are currently working 
 Press Crtl S to save that then go back into unity. Your will quickly realise their is a slight problem. We have a script but nothing to attach it to.
 To recitify this go to the Hierarchy and right click then move down and click create empty. Name this player. Repeat the last part but instead create a 3d object capsule.
 
-Afterward go to the inspector and click add component. Once you have done this search for a rigidbody. Rigidbody gives phycis to the gameObject it is attached to. Make sure that Intrepolate is set to Intrepolate and Collison Detection is set to Continous.
+Afterward go to the inspector and click add component. Once you have done this search for a rigidbody. Rigidbody gives phycis to the gameObject it is attached to. Make sure that Intrepolate is set to Intrepolate and Collison Detection is set to Continous. Additionally freeze all three rotations our code will be doing them.
 
 Now drag and drop the Input manager onto the casuples inspector and edit the values under it in the inspector until your happy with it.
 
