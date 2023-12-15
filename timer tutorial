@@ -30,7 +30,7 @@ GameOver-how to make the game over screen
 To begin setting up the game over screen you must first right click on the UI canvas in the hierarchy and go down to UI then select canvas. Name it GameOver
 Then right click on the GameOver canvas and select button (textmeshpro one) this will give you both a working button, which you should name its job for its restart but it can be quit or main menu, and modifiable text as a child.
 To change the text have the button show its children to do this press on the little down arrow (next to its name) after selecting it. I changed mine text to say restart.
-
+Lastly click on GameOver, and in the inspector next to its name at the top is a small tick box which you need to untick.
 
 
 Step 3 Arrange the UI
@@ -38,5 +38,14 @@ To do this double click on the original UI canvas this will take you to the larg
 then using the move tool arrange everything how you wish it to look.
 
 
+Step 4 Code: Using
+Create a C# script by right clicking on the libary within the projects window. You can name it how you wish but I named mine CountDownTimer.
+Once you open the file go to the section at the top which has a group of using lines. Replace  using System.Collections to using TMPro; and replace System.Collections.Generic with using UnityEngine.SceneManagement;
+and one line below add using UnityEngine.UI;
+
+The reason we did this is so that C# know what we are going to be trying to use and will grant us access to the methods to create them.
+
+
+Step 5 Code: Variables
 
 
