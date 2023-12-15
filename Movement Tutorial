@@ -34,7 +34,7 @@ Once you have done this click on the cross and click up\down\left\right compsite
 Once you have completed that close the Inputsystem whilst making sure to save it. Then on the right hand of your screen click the tickbox for generate a C# class. This will generate a C# script that you do not need to open for this tutorial.
 
 
-STEP 2 Creating an Input Manager
+STEP 2 Creating an Input Manager (note that it is likely you will have a error within this creation process please wait till the end before debugging.)
 This is the script in which we will be calling the Input system (Please note evrey time you create a variable you must put it on a new line)
 
 Within the scripts folder: 
@@ -101,6 +101,9 @@ Afterward go to the inspector and click add component. Once you have done this s
 
 Now drag and drop the Input manager onto the casuples inspector and edit the values under it in the inspector until your happy with it.
 
+STEP 3: PlayerLocomotion
+
+
 Once you have done this please create another C# script. Name this one what you like but this is the one that allows for movement and rotation. So I named my PlayerLocomotion.
 
 Note // means a comment (this has no effect on code and is useful for notes.) and due to the length of this script I will be using it to explain certain parts.
@@ -108,7 +111,25 @@ Note // means a comment (this has no effect on code and is useful for notes.) an
 Just like the last one delete start and update. Then write the variables:
 InputManager inputManager;  // This is calling the InputManager we just created.
 Vector3 moveDirection;  //since this script will also have a part of the cameras code written into it then vector3 is used here.
-Transform camera
+Transform cameraObject; 
+Rigidbody playerRigidbody;
 
+public float movementSpeed = 7; 
+public float rotationSpeed = 15;
 
+With these variables written we can begin with the rest of the code.
 
+To begin we will want to write the function
+Private void Awake // what this means that this block of text will be called when the script is intialised
+{
+        inputManager = GetComponent<InputManager>(); // this calls the assigned InputManager rather than the script itself. This means you could put the Input Manager on multiple different things but the setting on the game object that this script and the Input Manager is attached will be the one called. Allowing you to customise each Input Manager
+        playerRigidbody = GetComponent<Rigidbody>(); //Same as the InputManager
+        cameraObject = Camera.main.transform; // this will call the camera with the Main camera (ehich you have as default.
+    }
+
+Next for future use we are going to write another function this one will be:
+public void HandleAllMovement() 
+    {
+        
+    }
+This once the other functions in this script are complete will have the functions inside to create a centralised and callable function.
