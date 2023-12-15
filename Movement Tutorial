@@ -35,11 +35,50 @@ Once you have completed that close the Inputsystem whilst making sure to save it
 
 
 STEP 2 Creating an Input Manager
-This is the script in which we will be calling the Input system
+This is the script in which we will be calling the Input system (Please note evrey time you create a variable you must put it on a new line)
 
-Within the scripts folder:
+Within the scripts folder: 
 So create a new C# script the same way you created a folder previously but instead click on  C# scripts. Name this one InputManager (spacing and capitalisation is important)
 open this script in visual studio by double clicking it.
+Delete public void start and public void update (you will do this for each script as well so I will be just referring to them as start and update) since we won't need these functions. A function carries out its block of code itself before handing control back to unity. This is due to the fact that code in unity doesn't run on a loop so it delegates its tasks.
+First thing we need to do is create some variables these being PlayerControls. Now this written like this:
+playerControls PLayerControls. The first word in this situation is what its referencing which is the Input system we created a moment ago. and the second word is the variable name within the code. (make sure the first word is spelt capitals and all exactly the same as the Input system)
+
+The next variable we need to create is the movement Input which is written like this:
+public Vector2 movementInput; This will allow the player to move along the X and Z axis within unity but not the Y since its a Vector2 not a 3 (if you added jump or flight earlier make it a vector 3 and make sure to do so for all vector2 that are in reference to movement) 
+
+next we will create the actaul movement Input.
+
+So first we have to create a function so that the code can be run. And since we want the code to be activated once a key has been pressed then it will be:
+private void OnEnable()
+{
+        if (PLayerControls == null)                                                                       
+        {
+            PLayerControls = new PlayerControls();
+            PLayerControls.PlayerMovement.WASD.performed += i => movementInput = i.ReadValue<Vector2>(); //WASD refers to the action with the green box
+        }
+
+        PLayerControls.Enable();
+
+    }
+
+PLayerControls.PlayerMovment.WASD.performed += i => movementInput = i.ReadValue<Vector2>(); calls upon the input system into giving the keybinds. This is the largest advantage the InputSystem has to the Input Manager as this is the only time the keys will have to be called and they are together.
+Meaning you don't have to write out GetKeyDowwn every time your trying to use a new key. Especially useful if your planning on porting the game over to other platforms as well since you can  addd the control bindings the same way.
+
+Since we have an enable we must have a disable function otherwise the script will always be running. To do this we would write:
+Private void OnDisable()
+{
+  PLayerControls.Disable()
+}
+
+for future use in other scripts we will add another function this one is so that all the inputs are linked to a single function making it so we don't have to type as much code later on.
+Public void HandleAllInputs()
+{
+  HandleMovementInput
+}
+
+The reason this one is a public is so that it can be called upon in other scenes whereas private ones can't be called on, helping to reduce clutter in the inspector. Additionally the reason the privates can be called on in this block is because they are in the same script.
+Next we have to make it so that the movementInput actually has the correct correlation 
 
 
 
