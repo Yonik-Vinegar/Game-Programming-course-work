@@ -142,6 +142,50 @@ public float maximumPivotAngle = 35;
 Step 7 CameraManager + Awake
 Now that we have our variables that will be needed, we need to create the code that will assign them.
 
+The first function we will be creating is:
+public void Awake()
+{
+   InputManager = FindObjectOfType<InputManager>();    
+   targetTransform =  FindObjectOfType <PlayerManager>().transform; // this is looking for the Player character.
+   defaultPosition = cameraTransform.localPosition.z; // this set the default position to the Cameras position within the unity editor. due to the fact that Awake is called the moment the script is intialised.
+}
+
+With the Awake function being used to call the required pieces into the script. This allows us to avoid writing more code later on and helps to keep everything shorter. 
+
+
+Step 8 PlayerManager (If you have done the movement tutorial only add the lines related to Camera.)
+The playerManager acts as a central hub for all of the inputs, movement and camera movement.
+Now then you may have noticed that second line within the awake function attempts to call upon a script that doesn't exist. Something we will be changing now. Create a new C# script and name it PlayerManager, make sure it spelt the exact same way.
+
+Open it and we will create the variables. These variables are: 
+InputManager inputManager;
+CameraManager cameraManager;
+
+next we need to put these to use so lets create a function.
+ private void Awake()
+    {
+        
+    }
+
+then we write out the variables so that they are finding upon their functions. We do it this way so that the data required but in a different script is retrieved before everything else is processed. 
+Otherwise it would require recreating that line of code entirely.
+After the variables are written out it should look like this:
+ private void Awake()
+    {
+        inputManager = GetComponent<InputManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
+        playerLocomotion = GetComponent<PlayerLocomotion>();
+    }
+
+Next we want to create the Inputs section of the PlayerManager. Due to the fact that we need to be constantly recieving the data of what inputs are being used, a update function would serve best.
+So for this one write:
+private void Update()
+{
+        inputManager.HandleAllInputs();
+}
+
+
+
 
 
 
