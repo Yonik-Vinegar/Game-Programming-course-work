@@ -51,13 +51,25 @@ The first variable we have to add is a [SerializeField]. A [SerializeField] is a
 The variable is: [SerializeField] float maxTime = 60f; what this does is acts as the maxTime of the timer so when the timer needs to be reset this is called.
 So we have the maxTime what about the normal time. This is the way to write that variable: private float time; since the time variable, will be calulated adding a value to it now would be pointless and likely counter productive.
 
-Now the remaining variables are the UI pieces we just put together. Turning these into variables are simple all you have to do is:
+Now the remaining,but one, variables are the UI pieces we just put together. Turning these into variables are simple all you have to do is:
     public Text TimerText;
     public Image Fill;
     public Button Restart;
     public GameObject GameOverCanvas, CountDownCanvas;
 These are option because we told C# that we are using Unity.UI;
 
+The last remaining variable is:
+public static bool GameIsOver = false;
+
+Step 6 Code: Awake
+
+So before any of the rest of the script can continue we must have two lines can as soon as its intialised thus the use of the Awake function. The two lines are that once the timer = 0 the game is over and the other one is calling the live function which have yet to write.
+To it we have to first make the function to do this just replace start with awake , then the lines themseleves so lets begin with writing the GameOver script, then the Live function next. 
+public void Awake 
+{
+    GameIsOver = (time == 0);
+    Live();
+}
 
 
-
+STEP 6 Code: Update
