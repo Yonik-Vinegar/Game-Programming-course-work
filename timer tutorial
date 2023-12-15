@@ -73,3 +73,48 @@ public void Awake
 
 
 STEP 6 Code: Update
+The update within the script must keep changing the timer and the amount of fill within the circle timer.  This is how it is done:
+ void Update()
+    {
+        time -= Time.deltaTime; // the line that doesn't make it go by framerate but realworld time.
+        TimerText.text = "" + (int)time; // the line that modifies the number within the text
+        Fill.fillAmount = time / maxTime; // the line that modifies the amount of fill
+
+        if (time <= 0) // The screen that leads to gameOver since the time equals zero
+        {
+            Over();
+        }
+    }
+
+STEP 6 Code: Over
+Since we have now identified/written the cause for a game over screen we now need to implement it within the code. This is how I did it:
+void Over()
+    {
+        GameOverCanvas.SetActive(true); //actives the gameOver canvas and children bringing the restart button to the screen
+        CountDownCanvas.SetActive(false); //removes the timer from the screen the moment it reaches zero
+        GameIsOver = true; //requirement for the bool to work, this tells Unity the state the game is in which is GameIsOver
+        Time.timeScale = 0; //used to pause the game to the player can't keep controlling the character. 1 is normal speed.
+    }
+
+
+
+Step 7 Code: Live
+The live is the game is "play mode" this is the reason why the Live function is called within the Awake function. Since the Live function is effectively the opposite of the Over function then its code is very similiar:
+void Live()
+    {
+        CountDownCanvas.SetActive(true);
+        GameOverCanvas.SetActive(false);
+        GameIsOver = false;
+        Time.timeScale = 1;
+        time = maxTime; // This resets the number to 60 rather keeping it at zero since it wouldn't have a chance to reset it.
+    }
+
+STEP 8 Code: Restartbutton
+The last function is for the restart button and is simply the command to load a scene pointed at the game scene.
+public void RestartButton()
+    {
+        Live(); //resets the live
+        SceneManager.LoadScene("SampleScene"); //this will reload the scene the game takes place in since the entire game is built into the SampleScene. This could lead to a main menu simply by changing scene name or you could have it close the program by Application.Quit.
+    }
+
+And there you have a working timer and game over screen with a restart button.
