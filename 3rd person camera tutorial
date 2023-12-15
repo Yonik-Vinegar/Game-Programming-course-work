@@ -113,5 +113,28 @@ Press Crtl S to save that then go back into unity.
 
 
 Step 6 cameraManager
-Create another script and call it CameraManager
+Create another script and call it CameraManager. Once you have opened camera manager delete both the public void start and public void update.
+Now that we have a clear C# file we can begin writing the variables.
+double / refers to a comment these have no effect on code but are useful for notes I will be using them to explain some parts.
+The variables you will have to write are
+InputManager InputManager;   //This calls on the InputManager script we just created which in turn get the keybind/bind.
 
+public Transform targetTransform; //The object the camera will follow
+public Transform cameraPivot; //The object the camera uses to pivot 
+public Transform cameraTransform; //The transform of the actual camera object in the scene - error had to change to public
+public LayerMask collisionLayers; // this is here so that you can collide with multiple things
+private float defaultPosition;
+private Vector3 cameraFollowVelocity = Vector3.zero;
+private Vector3 cameraVectorPosition;
+
+public float cameraCollisionOffset = 0.2f; //how much force the camera will bounce.
+public float minimumCollisionOffSet = 0.2f;
+public float cameraCollisionRadius = 0.2f;
+public float cameraFollowSpeed = 0.2f;
+public float cameraLookSpeed = 2;
+public float cameraPivotSpeed = 2;
+
+public float lookAngle; // this is so you can look up and down
+public float pivotAngle; //this is so you can look left to right
+public float minimumPivotAngle = -35;
+public float maximumPivotAngle = 35;
