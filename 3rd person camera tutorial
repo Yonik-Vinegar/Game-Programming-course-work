@@ -6,9 +6,7 @@ IMPORTANT NOTICE: This tutorial assumes you haven't read any of the other tutori
 Step 1 Setting up the camera Objects
 First thing you need to do is add an empty object in the hierarchy you can do this by right clicking in the hierarchy and clicking create empty. Name this one CameraManager 
 The next thing you will want to do is create another empty object which you should name CameraPivot drag this one over the CameraManager and let go. The reason behind this is to set the CameraManager as the parent. 
-Then drag MainCamera over the CameraPivot and drop so that CameraPivot is the parent of the maincamera. Additionally if you have to move these into the capsule then reset their transform by right-clicking on the transform bar in the inspector. This can be quite finicky.
-Once the camera (I will be referring to all three as the camera unless I name a specific one) transform is at 0,0,0 (position) then click on the cameraPivot select the y position in the inspector and increase or decrease it for the height you want your 3rd person camera to be at. 
-After you have decided on the you must decide on the distance. To do this click on maincamera and using the Z tall move it how far back you want it to be.  This will likely take multiple attempts.
+Then drag MainCamera over the CameraPivot and drop so that CameraPivot is the parent of the maincamera. 
 
 STEP 2 setting up the input system (if you came from the movement system tutorial look for 2.5)
 The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager. This is so that we may install the inputsystem that we will be using for this tutorial. 
@@ -40,3 +38,13 @@ Then instead of deleting your sole binding set it to mouse (delta)
 
 
 Step 3 set up the character (ignore if you came from movement tutorial)
+Create another empty object and name it player (if you already have a player character feel free to ignore this step and advance one) then use the same process again to create another game object but instead of it being empty click 3d object capsule.
+Once the capsule is in your hierarchy click on it and click on add component in the inspector use search for a rigidbody and assign it. Once you have done that ensure that Intrepolate is set to Intrepolate and Collision Detection is set to continous. Additionally freeze all rotations.
+
+step 4 positioning the camera
+Once you have dragged MainCamera over the CameraPivot and drop so that CameraPivot is the parent of the maincamera. You have to move these into the capsule on in the hierarchy but in scene then reset their transform by right-clicking on the transform bar in the inspector. This can be quite finicky.
+Once the camera (I will be referring to all three as the camera unless I name a specific one) transform is at 0,0,0 (position) then click on the cameraPivot select the y position in the inspector and increase or decrease it for the height you want your 3rd person camera to be at. 
+After you have decided on the you height must decide on the distance. To do this click on maincamera and using the Z transform move it how far back you want it to be.  This will likely take multiple attempts.
+
+
+Step 5 
