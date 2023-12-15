@@ -4,4 +4,5 @@ This is a 3rd person movement tutorial making use of the unity input system add 
 IMPORTANT NOTICE: Please follow Movement Tutorial first since this makes use of the same input system.
 
 Step 1 Setting up the camera Objects
-First thing you need to do is add an empty
+First thing you need to do is add an empty object in the hierarchy you can do this by right clicking in the hierarchy and clicking create empty. Name this one CameraManager 
+The next thing you will want to do is create another empty object which you should name CameraPivot
