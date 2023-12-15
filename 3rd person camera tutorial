@@ -112,7 +112,7 @@ The reason for it being Y instead of a Z is that since we are currently working 
 Press Crtl S to save that then go back into unity. 
 
 
-Step 6 cameraManager
+Step 6 cameraManager + variables
 Create another script and call it CameraManager. Once you have opened camera manager delete both the public void start and public void update.
 Now that we have a clear C# file we can begin writing the variables.
 double / refers to a comment these have no effect on code but are useful for notes I will be using them to explain some parts.
@@ -121,13 +121,13 @@ InputManager InputManager;   //This calls on the InputManager script we just cre
 
 public Transform targetTransform; //The object the camera will follow
 public Transform cameraPivot; //The object the camera uses to pivot 
-public Transform cameraTransform; //The transform of the actual camera object in the scene - error had to change to public
+public Transform cameraTransform; //The transform of the actual camera object in the scene 
 public LayerMask collisionLayers; // this is here so that you can collide with multiple things
 private float defaultPosition;
 private Vector3 cameraFollowVelocity = Vector3.zero;
 private Vector3 cameraVectorPosition;
 
-public float cameraCollisionOffset = 0.2f; //how much force the camera will bounce.
+public float cameraCollisionOffset = 0.2f; //how much force the camera will bounce. This is so that the camera will not clip through walls allowing the playable character tp remain visible.
 public float minimumCollisionOffSet = 0.2f;
 public float cameraCollisionRadius = 0.2f;
 public float cameraFollowSpeed = 0.2f;
@@ -136,5 +136,12 @@ public float cameraPivotSpeed = 2;
 
 public float lookAngle; // this is so you can look up and down
 public float pivotAngle; //this is so you can look left to right
-public float minimumPivotAngle = -35;
+public float minimumPivotAngle = -35; //what stops you from doing a full 360. Since this would be difficult to control and would also likely let the player see under the map.
 public float maximumPivotAngle = 35;
+
+Step 7 CameraManager + Awake
+Now that we have our variables that will be needed, we need to create the code that will assign them.
+
+
+
+
