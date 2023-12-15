@@ -133,3 +133,16 @@ public void HandleAllMovement()
         
     }
 This once the other functions in this script are complete will have the functions inside to create a centralised and callable function.
+So lets create these functions to that they might be implemented in the HandleAllMovement 
+The first one we will make will handle the movement. So the function and block of text should look like:
+ private void HandleMovement()
+    {
+        moveDirection = cameraObject.forward * inputManager.verticalInput; // this will make it so that the player moves in the direction the character is facing.
+        moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput; // this will let us move left or right depending on the camera direction
+        moveDirection.Normalize();
+        moveDirection.y = 0;
+        moveDirection = moveDirection * movementSpeed;
+
+        Vector3 movementVelocity = moveDirection;
+        playerRigidbody.velocity = movementVelocity;
+    }
