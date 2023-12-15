@@ -129,8 +129,30 @@ public void RestartButton()
         SceneManager.LoadScene("SampleScene");
     }
 
-However this block only contained the minor issue of not having a method not turn the game over UI off something I recitifed by adding Live(). This however did not solve the overarching issue of reseting the timer and movement.
-Seeing that the addition of the function Live() was able to help reset the game over UI to being back off until the timer reached zero. This however was still temporarly impossible. 
+However this block only contained the minor issue of not having a method to turn the game over UI off something I recitifed by adding Live(). This however did not solve the overarching issue of reseting the timer and movement.
+Seeing that the addition of the function Live() was able to help reset the game over UI to being back off until the timer reached zero. This however was still temporarly impossible due to the timer not being reset. 
+Additionally it also being the effectively play state of the game whilst Over was meant to be a simple UI. Allowed for me to believe that once Live was called it would reset the timer and movement. So I put Live() into the start function. Only for it make no difference.
+This is because there was still no line of code that actually reset the and causing the over function to be constantly called leading to the game to be paused thanks to the previous fix. This mistake however did help me realise that I needed a reset line. I also attempted switching to awake believing that
+getting the function called when intialised would help remedy that issue. It did not.
+At first I thought of putting it in the over function area however I stopped when I realised that the over function ends as soon as the scene is reloaded. This meant that it should only be in Live and since I could then use it to update the awake function thanks to the previous attempt. I would be able to get it operating in the game.
+But before I could write the line I needed a variable I could call upon to use as a reset. As such I created a variable in a serialised field called maxTime. which I then used in these lines of code: S
+Fill.fillAmount = time / maxTime; and time = maxTime; 
+
+Fill.fillAmount = time / maxTime is used for the decreasing of the circle UI.
+
+I knew I needed to use the MaxTime variable to have the time variable, which is linked to the text of the timer, equal it leading to me making:
+
+Whilst time = maxTime within the Live() function so it looked like this:
+void Live()
+    {
+        CountDownCanvas.SetActive(true);
+        GameOverCanvas.SetActive(false);
+        GameIsOver = false;
+        Time.timeScale = 1;
+        time = maxTime; 
+    }
+
+
 
 
 
