@@ -204,3 +204,5 @@ private void Awake()
     }
 This make use of the handles we created previously and have setup so that they are continously working.
 
+
+Once you have done this then you have typed all the code needed for player movement now you only need camera movement. But before that be sure to assign all these scripts to the player capsule.
