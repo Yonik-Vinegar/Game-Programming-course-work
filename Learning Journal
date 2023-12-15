@@ -99,7 +99,14 @@ rotation = Vector3.zero;
         targetRotation = Quaternion.Euler(rotation);
         cameraPivot.localRotation = targetRotation;
 since the vertical movement was working and the only differences are the rotation.y/x and the name of the variables that are turning. As such I quickly dismissed the likelyhood of it being the rotation.y/x since this was required for the different directions.
-So I looked at the named variables and realised that targetTransform was typed instead of a simple transform. This caused issues because 
+So I looked at the named variables and realised that targetTransform was typed instead of a simple transform. This caused issues because the variable targetTransform was set to be linked to anything with a PlayerManager script on the line  targetTransform = FindObjectOfType<PlayerManager>().transform;.
+Since the PlayerManager script wasn't set to the camera, the targetTransform variable would have no affect on it. As such for the camera to be affected a simple transform was required since this script would be on the game object it would be affecting. 
+Otherwise like the cameraPivot it would require its own variable name.
+
+
+
+
+
 
 
 
