@@ -41,11 +41,73 @@ Step 3 set up the character (ignore if you came from movement tutorial)
 Create another empty object and name it player (if you already have a player character feel free to ignore this step and advance one) then use the same process again to create another game object but instead of it being empty click 3d object capsule.
 Once the capsule is in your hierarchy click on it and click on add component in the inspector use search for a rigidbody and assign it. Once you have done that ensure that Intrepolate is set to Intrepolate and Collision Detection is set to continous. Additionally freeze all rotations.
 
+(please note this tutorial will not be providing a movement script please use the movement tutorial)
+
 step 4 positioning the camera
 Once you have dragged MainCamera over the CameraPivot and drop so that CameraPivot is the parent of the maincamera. You have to move these into the capsule on in the hierarchy but in scene then reset their transform by right-clicking on the transform bar in the inspector. This can be quite finicky.
 Once the camera (I will be referring to all three as the camera unless I name a specific one) transform is at 0,0,0 (position) then click on the cameraPivot select the y position in the inspector and increase or decrease it for the height you want your 3rd person camera to be at. 
 After you have decided on the you height must decide on the distance. To do this click on maincamera and using the Z transform move it how far back you want it to be.  This will likely take multiple attempts.
 
 
-Step 5 Input Manager (still relevant to people from movement tutorial)
+Step 5 Input Manager (still relevant to people from movement tutorial do not have to create new functions but instead put modified lines alongside the previous one)
+This is the script in which we will be calling the Input system (Please note evrey time you create a variable you must put it on a new line)
+
+Within the scripts folder: 
+So create a new C# script the same way you created a folder previously but instead click on  C# scripts. Name this one InputManager (spacing and capitalisation is important)
+open this script in visual studio by double clicking it.
+Delete public void start and public void update (you will do this for each script as well so I will be just referring to them as start and update) since we won't need these functions. A function carries out its block of code itself before handing control back to unity. This is due to the fact that code in unity doesn't run on a loop so it delegates its tasks.
+First thing we need to do is create some variables these being PlayerControls. Now this written like this:
+playerControls PLayerControls. The first word in this situation is what its referencing which is the Input system we created a moment ago. and the second word is the variable name within the code. (make sure the first word is spelt capitals and all exactly the same as the Input system)
+
+The next variable we need to create is the movement Input which is written like this:
+public Vector2 cameraInput;     This will allow the player to move along the X and Z axis within unity but not the Y since its a Vector2 not a 3 (if you added jump or flight earlier make it a vector 3 and make sure to do so for all vector2 that are in reference to movement) 
+
+next we will create the actaul movement Input.
+
+So first we have to create a function so that the code can be run. And since we want the code to be activated once a key has been pressed then it will be:
+private void OnEnable()
+{
+        if (PLayerControls == null)                                                                       
+        {
+            PLayerControls = new PlayerControls();
+            PLayerControls.PlayerMovement.Camera.performed += i => movementInput = i.ReadValue<Vector2>(); //Camera refers to the action with the green box
+        }
+
+        PLayerControls.Enable();
+
+    }
+
+PLayerControls.PlayerMovment.WASD.performed += i => movementInput = i.ReadValue<Vector2>(); calls upon the input system into giving the keybinds. This is the largest advantage the InputSystem has to the Input Manager as this is the only time the keys will have to be called and they are together.
+Meaning you don't have to write out GetKeyDowwn every time your trying to use a new key. Especially useful if your planning on porting the game over to other platforms as well since you can  addd the control bindings the same way.
+
+Since we have an enable we must have a disable function otherwise the script will always be running. To do this we would write:
+Private void OnDisable()
+{
+  PLayerControls.Disable()
+}
+
+for future use in other scripts we will add another function this one is so that all the inputs are linked to a single function making it so we don't have to type as much code later on.
+Public void HandleAllInputs()
+{
+  HandleMovementInput()
+}
+
+The reason this one is a public is so that it can be called upon in other scenes whereas private ones can't be called on, helping to reduce clutter in the inspector. Additionally the reason the privates can be called on in this block is because they are in the same script.
+Next we have to make it so that the cameraInput actually has the correct correlation. To do this we need to create new variables. So lets head back up to the top of the script where the other variables should be and underneath them type out our new one. 
+The first variable is:
+public float cameraInputY;
+the second one is:
+public float cameraInputX;
+
+right now that we have the  our new variables kets put them to work.
+
+underneath everything else we are going to put a new function. This being:
+private void HandleMovementInput()
+    {
+        cameraInputY = cameraInput.y;
+        cameraInputX = cameraInput.x
+    }
+The reason for it being Y instead of a Z is that since we are currently working in vector2 Z isn't recognised (unless your in vector 3 in which case switch it to Z) this means that Y holds Z's position at the verti
+
+Press Crtl S to save that then go back into unity. 
 
