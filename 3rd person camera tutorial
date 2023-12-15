@@ -67,15 +67,37 @@ next we will create the actaul movement Input.
 So first we have to create a function so that the code can be run. And since we want the code to be activated once a key has been pressed then it will be:
 private void OnEnable()
 {
-        if (PLayerControls == null)                                                                       
+
+}
+
+ since we haven't enabled the player controls by giving the keybinds in the Input System a purpose we would require a null in order to then use the player controller. What this would like added to the previous code is this:
+ private void OnEnable()
+{
+ if (PLayerControls == null)                                                                       
         {
-            PLayerControls = new PlayerControls();
-            PLayerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>(); //Camera refers to the action with the green box
+           
         }
+}
 
-        PLayerControls.Enable();
+   However we now have an if statement that has no purpose and for player controls and more importantly the input system we must assign them. Which means that the Input system/ player controls will end up equalling eachother so that the earlier created variable has value now attached.
+ private void OnEnable()
+{
+ if (PLayerControls == null)                                                                       
+        {
+           PLayerControls = new PlayerControls();
+        }
+}
 
-    }
+now we need to make it so that the actions assigned within the Input system know the speed to operate at. which when added to the if statement looks like this:
+ private void OnEnable()
+{
+ if (PLayerControls == null)                                                                       
+        {
+           PLayerControls = new PlayerControls();
+           PLayerControls.PlayerMovment.Camera.performed += i => cameraInput = i.ReadValue<Vector2>(); 
+        }
+}
+
 
 Since we have an enable we must have a disable function otherwise the script will always be running. To do this we would write:
 Private void OnDisable()
