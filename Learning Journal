@@ -54,14 +54,52 @@ Leading me to check the inspector and more importantly the rigidbody. This is wh
 For Future reference:
 Check the inspector first and make sure the Collison Detection is on the correct setting.
 
+6th december - 9:45
+Camera remains static
+
+What does this mean?
+This means that no matter the input given the camera will remain static.
+
+Cause:missed capitalisation of function
+
+To resolve this I first went about checking inspector to make sure the cameras public variables were assigned correctly. Seeing that they are all assigned correctly I moved onto the code.
+I first checked the CameraManager script to see if there was anything wrong particularly these two blocks:
+ rotation = Vector3.zero;
+        rotation.y = lookAngle;
+        targetRotation = Quaternion.Euler(rotation); 
+        targetTransform.rotation = targetRotation;
+
+rotation = Vector3.zero;
+        rotation.x = pivotAngle;
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivot.localRotation = targetRotation;
+
+seeing as how this controlled the rotation, and it was my belief that I didn't assign the variables correctly. However I failed to see anything that would make me think it wouldn't rotate. (there was a mistake but it didn't have anything affect and I hadn't noticed it yet)
+Since it was wasn't a variable mix up I believed it must have been an input issue. Since if it isn't the block doing it, it's likley the block on how its done. Making me check the PlayerManager script since that acted as the final input system for the camera. 
+This is where I noticed the only function type that didn't have a capital letter was LateUpdate something I quickly rectified.
+
+For future reference all function types are in capital letters.
 
 
 6th december - 10:11
 
-Camera not rotating.
+Camera not rotating horiziontally
 
 What does this mean?
+The camera is still able to rotate/move vertically however it is unable to move when it comes to horiziontal movements.
 
+To resolve this I first checked this line of code:
+rotation = Vector3.zero;
+        rotation.y = lookAngle;
+        targetRotation = Quaternion.Euler(rotation); 
+        targetTransform.rotation = targetRotation;
+since this is the code that controls the horiziontal movement. I decided to use this version as reference:
+rotation = Vector3.zero;
+        rotation.x = pivotAngle;
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivot.localRotation = targetRotation;
+since the vertical movement was working and the only differences are the rotation.y/x and the name of the variables that are turning. As such I quickly dismissed the likelyhood of it being the rotation.y/x since this was required for the different directions.
+So I looked at the named variables and realised that targetTransform was typed instead of a simple transform. This caused issues because 
 
 
 
