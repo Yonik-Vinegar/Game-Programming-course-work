@@ -70,15 +70,12 @@ private void OnEnable()
         if (PLayerControls == null)                                                                       
         {
             PLayerControls = new PlayerControls();
-            PLayerControls.PlayerMovement.Camera.performed += i => movementInput = i.ReadValue<Vector2>(); //Camera refers to the action with the green box
+            PLayerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>(); //Camera refers to the action with the green box
         }
 
         PLayerControls.Enable();
 
     }
-
-PLayerControls.PlayerMovment.WASD.performed += i => movementInput = i.ReadValue<Vector2>(); calls upon the input system into giving the keybinds. This is the largest advantage the InputSystem has to the Input Manager as this is the only time the keys will have to be called and they are together.
-Meaning you don't have to write out GetKeyDowwn every time your trying to use a new key. Especially useful if your planning on porting the game over to other platforms as well since you can  addd the control bindings the same way.
 
 Since we have an enable we must have a disable function otherwise the script will always be running. To do this we would write:
 Private void OnDisable()
