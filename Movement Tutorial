@@ -74,11 +74,36 @@ Private void OnDisable()
 for future use in other scripts we will add another function this one is so that all the inputs are linked to a single function making it so we don't have to type as much code later on.
 Public void HandleAllInputs()
 {
-  HandleMovementInput
+  HandleMovementInput()
 }
 
 The reason this one is a public is so that it can be called upon in other scenes whereas private ones can't be called on, helping to reduce clutter in the inspector. Additionally the reason the privates can be called on in this block is because they are in the same script.
-Next we have to make it so that the movementInput actually has the correct correlation 
+Next we have to make it so that the movementInput actually has the correct correlation. To do this we need to create new variables. So lets head back up to the top of the script where the other variables should be and underneath them type out our new one. 
+The first variable is:
+public float verticalInput;
+the second one is:
+public float horizontalInput;
+
+right now that we have the  our new variables kets put them to work.
+
+underneath everything else we are going to put a new function. This being:
+private void HandleMovementInput()
+    {
+        verticalInput = movementInput.y;
+        horizontalInput = movementInput.x
+    }
+The reason for it being Y instead of a Z is that since we are currently working in vector2 Z isn't recognised (unless your in vector 3 in which case switch it to Z) this means that Y holds Z's position at the verti
+
+Press Crtl S to save that then go back into unity. Your will quickly realise their is a slight problem. We have a script but nothing to attach it to.
+To recitify this go to the Hierarchy and right click then move down and click create empty. Name this player. Repeat the last part but instead create a 3d object capsule.
+
+Afterward go to the inspector and click add component. Once you have done this search for a rigidbody. Rigidbody gives phycis to the gameObject it is attached to. Make sure that Intrepolate is set to Intrepolate and Collison Detection is set to Continous.
+
+Now drag and drop the Input manager onto the casuples inspector.
+
+Once you have done this please create another C# script. Name this one what you like but this is the one that allows for movement and rotation. So I named my PlayerLocomotion.
+
+Just like the last one delete start and update. Then write the variables.
 
 
 
