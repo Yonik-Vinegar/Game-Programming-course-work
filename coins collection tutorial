@@ -4,6 +4,7 @@ To create a coin collection system you first need points.
 
 for the sake of demonstration I am using simple unity sphere with a yellow material. This is what I am talking about when I refer to coins.
 
+
 Step 1 making the coins
 To create the "coins" click on GameObject and the top of unity.  Then go down to 3d object, then click sphere,
 to give it a more coin look you can create a yellow material by right clicking in the libary then left clicking create then material. Once you have the material you can change the colour by clicking on the material and in the inspection menu named albedo contains the colour wheel change it to whatevr colour you wish.
@@ -13,9 +14,13 @@ Make sure that their gravity it turned of by clicking the tick box and that thei
 Step 2 UI
 Now that we have the coins we need a way to display them once they are picked up. To do that we need to create UI 
 To do this we must click on right click on the hierarchy then go down to UI then go to canvas and name it UI (this does not apply if you followed timer tutorial)
-Then right click on UI go down to UI and click Text (textmeshpro)  (this line applys to those that did the timer tutorial)
-Rename the text in the hierarchy to ScoreSystem and in the text box in ScoreSystem's inspector change it to saying score:0
+Then right click on UI go down to UI and click Text (textmeshpro) (this line applys to those that did the timer tutorial)
+if it asks you to install accept. If it doesn't ask then go this path windows->PackageManager-> search bar as long as it says unity registry not in project. change it to say unity registry if it doesn' say it.-> Search TextMeshPro->Install then repeat last line
+Rename the text in the hierarchy to ScoreText and in the text box in ScoreText's inspector change it to saying score:0
 
 
 Step 3 code
-Create a C# script in the libary and name it ScoreSystem. Once you
+Create a C# script in the libary and name it ScoreSystem. Once you have opened the file add:
+using TMPro 
+This is to let Unity know that you are using the text mesh pro addon package.
+
