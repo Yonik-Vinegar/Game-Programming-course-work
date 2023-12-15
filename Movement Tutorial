@@ -7,6 +7,7 @@ The unity Inputmanager is a built in system which to call upon you would use cod
 
 Whereas the Inputsystem uses a popup to assign keys within an action map, these assignments are added in the actions sections, and you then call upon either the actions. Which can contain multiple keys such as in this tutorial or the entire action map.
 
+The benefits and negatives will be discussed throughout this tutorial and in slightly more detail at the end.
 
 STEP 1 setting up the input system
 The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager.
