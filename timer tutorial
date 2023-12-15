@@ -47,5 +47,17 @@ The reason we did this is so that C# know what we are going to be trying to use 
 
 
 Step 5 Code: Variables
+The first variable we have to add is a [SerializeField]. A [SerializeField] is a attribute that keeps the variable private meaning it can't be called in other scripts. But it can be altered within the Inspector like a public variable.
+The variable is: [SerializeField] float maxTime = 60f; what this does is acts as the maxTime of the timer so when the timer needs to be reset this is called.
+So we have the maxTime what about the normal time. This is the way to write that variable: private float time; since the time variable, will be calulated adding a value to it now would be pointless and likely counter productive.
+
+Now the remaining variables are the UI pieces we just put together. Turning these into variables are simple all you have to do is:
+    public Text TimerText;
+    public Image Fill;
+    public Button Restart;
+    public GameObject GameOverCanvas, CountDownCanvas;
+These are option because we told C# that we are using Unity.UI;
+
+
 
 
