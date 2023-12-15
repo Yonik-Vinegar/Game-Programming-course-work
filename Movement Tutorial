@@ -7,8 +7,6 @@ The unity Inputmanager is a built in system which to call upon you would use cod
 
 Whereas the Inputsystem is a package addon that uses a popup to assign keys within an action map, these assignments are added in the actions sections, and you then call upon either the actions. Which can contain multiple keys such as in this tutorial or the entire action map.
 
-The benefits and negatives will be discussed throughout this tutorial and in slightly more detail at the end.
-
 STEP 1 setting up the input system
 The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager. This is so that we may install the inputsystem that we will be using for this tutorial. 
 
@@ -147,7 +145,7 @@ The first one we will make will handle the movement. So the function and block o
         playerRigidbody.velocity = movementVelocity;
     }
 
-Add the function handle to the HandleAllMovement function so that it looks like
+Add the handle to the HandleAllMovement function so that it looks like
 public void HandleAllMovement() 
     {
         HandleMovement()
@@ -167,10 +165,42 @@ To do this we must type:
         if (targetDirection == Vector3.zero)
             targetDirection = transform.forward;
 
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);//  Quaternions are unitys basic way to work in rotation.
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         transform.rotation = playerRotation;
     }
 
+Add this to HandleAllMovement like we did with HandleMovement
+
+Now then their is one last script that must be created so save this one then create a new script.
+
+STEP 4: PlayerManager
+This script is to bring it all together. 
+ unlike each of the other scripts delete only start.
+Then we create some variables. As such:
+InputManager inputManager;
+CameraManager cameraManager; // this will be used in the camera tutorial so comment it out (what the double / do)
+PlayerLocomotion playerLocomotion;
+
+So lets create our function:
+private void Awake()
+    {
+        inputManager = GetComponent<InputManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
+        playerLocomotion = GetComponent<PlayerLocomotion>();
+
+    }
+
+ private void Update() // this will update every frame but can be broken
+    {
+        inputManager.HandleAllInputs();
+    }
+
+
+ private void FixedUpdate() //This means that the every frame this will update no matter what.
+    {
+        playerLocomotion.HandleAllMovement();
+    }
+This make use of the handles we created previously and have setup so that they are continously working.
 
