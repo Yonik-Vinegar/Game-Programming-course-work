@@ -88,7 +88,7 @@ Camera not rotating horiziontally
 What does this mean?
 The camera is still able to rotate/move vertically however it is unable to move when it comes to horiziontal movements.
 
-To resolve this I first checked this line of code:
+To resolve this I first checked this block of code:
 rotation = Vector3.zero;
         rotation.y = lookAngle;
         targetRotation = Quaternion.Euler(rotation); 
@@ -103,6 +103,34 @@ So I looked at the named variables and realised that targetTransform was typed i
 Since the PlayerManager script wasn't set to the camera, the targetTransform variable would have no affect on it. As such for the camera to be affected a simple transform was required since this script would be on the game object it would be affecting. 
 Otherwise like the cameraPivot it would require its own variable name.
 
+6th december - 11:51
+player could still move when game over UI was active 
+
+What does this mean?
+After the timer runs out it activates the game over UI which just contains a reset button. Howerver the player is still able to move around the scene and collect points to alter their score.
+
+Cause:lack of code to control the flow of time. 
+
+To resolve this I attempted to make a pause timer underneath the live and over function this was done by trying Timescale = 1f; and Timescale =  0f; respectively. This however didn't work since it didn't contain everything it needed.
+So in order to figure it out I went to the unity manual and looked for pausing the game as well as Timscale only to eventually through the Timescale search discover the need for time. infront of timescale. leading to the resolve of the issue.
+
+6th december - 11:55
+reset doesn't reset timer/code.
+
+What does this mean?
+After the timer runs out and the reset button is pressed, it successfully reloads the scene however it doesn't reset the timer nor can the player move.
+
+cause: start function needed to be an awake, and there was no line of code that reset the timer count to it max value.
+
+To resolve this I went to the scene reload block, this being:
+public void RestartButton()
+    {
+        
+        SceneManager.LoadScene("SampleScene");
+    }
+
+However this block only contained the minor issue of not having a method not turn the game over UI off something I recitifed by adding Live(). This however did not solve the overarching issue of reseting the timer and movement.
+Seeing that the addition of the function Live() was able to help reset the game over UI to being back off until the timer reached zero. This however was still temporarly impossible. 
 
 
 
