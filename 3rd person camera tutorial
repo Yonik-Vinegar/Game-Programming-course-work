@@ -228,5 +228,27 @@ private void FollowTarget()
     }
 
 STEP 11 rotating the camera
+now the camera is following the player we are going to need to rotate the camera for corners and as a general quality of life feature.
+To do this we start of with the function:
+Private void RotateCamera()
+{
+       Vector3 rotation; //this means we won't have to repeat Vector3 each time we type rotation
+       Quaternion targetRotation //this means we won't have to repeat Quaternion each time we type targetRotation  
+       
+        lookAngle = lookAngle + (InputManager.cameraInputX * cameraLookSpeed); // this calculates the lookAngle
+        pivotAngle = pivotAngle - (InputManager.cameraInputY * cameraPivotSpeed); // this calculates the pivotAngle
+        pivotAngle = Mathf.Clamp(pivotAngle, minimumPivotAngle, maximumPivotAngle); //this prevent the pivotAngle from going over the set minimum and maximum angle 
+
+        rotation = Vector3.zero;
+        rotation.y = lookAngle; //stating the lookAngle affects the rotation on the Y axis
+        targetRotation = Quaternion.Euler(rotation); // because we put Quaternion targetRotation earlier it means we don't have to put Quaternion now
+        transform.rotation = targetRotation;  //the line that rotates it 
+
+        rotation = Vector3.zero;
+        rotation.x = pivotAngle;
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivot.localRotation = targetRotation; //local rotation only affects the game object rotation no the world rotation.
+
+}
 
 
