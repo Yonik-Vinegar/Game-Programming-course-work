@@ -2,6 +2,12 @@ This is a 3rd person movement tutorial making use of the unity input system add 
 
 This tutorial will be walking you through every step whilst explaining each step in as much detail as possible.
 
+Before this tutorial can begin it is important to explain the difference between Unity's Inputsystem and the Inputmanager.
+The unity Inputmanager is a built in system which to call upon you would use code such as GetKeyDown or KeyCode and Input.GetButtonDown which can be used to assign keys, controller/gamepad bindings as well as vr and ar. joysticks and lastly touch screens.
+
+Whereas the Inputsystem uses a popup to assign keys within an action map, these assignments are added in the actions sections, and you then call upon either the actions. Which can contain multiple keys such as in this tutorial or the entire action map.
+
+
 STEP 1 setting up the input system
 The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager.
 
