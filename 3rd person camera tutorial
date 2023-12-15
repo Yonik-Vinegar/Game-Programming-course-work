@@ -11,4 +11,6 @@ Once the camera (I will be referring to all three as the camera unless I name a 
 After you have decided on the you must decide on the distance. To do this click on maincamera and using the Z tall move it how far back you want it to be.  This will likely take multiple attempts.
 
 Step2 setting up the input
-The second
+The second thing you need to do is go back into the InputSystem window so that another action can be added. Once you have opened up the InputSystem window you simply need to press the cross at the top of the action section. This will create a new action that should be named to camera. 
+Change the action type to pass through and control type to vector2 for the same reason as the movement keys. (this being that we are only using two directions and not all three)
+Then add a binding to it 
