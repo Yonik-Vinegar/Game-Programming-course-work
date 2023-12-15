@@ -5,4 +5,10 @@ IMPORTANT NOTICE: Please follow Movement Tutorial first since this makes use of 
 
 Step 1 Setting up the camera Objects
 First thing you need to do is add an empty object in the hierarchy you can do this by right clicking in the hierarchy and clicking create empty. Name this one CameraManager 
-The next thing you will want to do is create another empty object which you should name CameraPivot
+The next thing you will want to do is create another empty object which you should name CameraPivot drag this one over the CameraManager and let go. The reason behind this is to set the CameraManager as the parent. 
+Then drag MainCamera over the CameraPivot and drop so that CameraPivot is the parent of the maincamera. Additionally if you have to move these into the capsule then reset their transform by right-clicking on the transform bar in the inspector. This can be quite finicky.
+Once the camera (I will be referring to all three as the camera unless I name a specific one) transform is at 0,0,0 (position) then click on the cameraPivot select the y position in the inspector and increase or decrease it for the height you want your 3rd person camera to be at. 
+After you have decided on the you must decide on the distance. To do this click on maincamera and using the Z tall move it how far back you want it to be.  This will likely take multiple attempts.
+
+Step2 setting up the input
+The second
