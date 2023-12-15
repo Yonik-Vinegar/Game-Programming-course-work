@@ -1,7 +1,7 @@
 This is a 3rd person movement tutorial making use of the unity input system add on. (The code was taken from Sebastian Graves  https://www.youtube.com/watch?v=suU4aBdBjKA&list=PLD_vBJjpCwJsqpD8QRPNPMfVUpPFLVGg4&index=3 )
 
 
-IMPORTANT NOTICE: Please follow Movement Tutorial first since this makes use of the same input system.
+IMPORTANT NOTICE: This tutorial assumes you haven't read any of the other tutorials. (However it is highly recommended you start at movement tutorial)
 
 Step 1 Setting up the camera Objects
 First thing you need to do is add an empty object in the hierarchy you can do this by right clicking in the hierarchy and clicking create empty. Name this one CameraManager 
@@ -10,7 +10,26 @@ Then drag MainCamera over the CameraPivot and drop so that CameraPivot is the pa
 Once the camera (I will be referring to all three as the camera unless I name a specific one) transform is at 0,0,0 (position) then click on the cameraPivot select the y position in the inspector and increase or decrease it for the height you want your 3rd person camera to be at. 
 After you have decided on the you must decide on the distance. To do this click on maincamera and using the Z tall move it how far back you want it to be.  This will likely take multiple attempts.
 
-Step2 setting up the input
-The second thing you need to do is go back into the InputSystem window so that another action can be added. Once you have opened up the InputSystem window you simply need to press the cross at the top of the action section. This will create a new action that should be named to camera. 
-Change the action type to pass through and control type to vector2 for the same reason as the movement keys. (this being that we are only using two directions and not all three)
-Then add a binding to it 
+STEP 1 setting up the input system
+The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager. This is so that we may install the inputsystem that we will be using for this tutorial. 
+
+Once in package manager:
+Make sure at the top of the manager it says package Unity Registry instead of package in project.
+Then using the search bar search for InputSystem. once you have found it click install which resides in the bottom right of the window. Then wait until it has finished.
+
+Outside of package manager:
+Once it has right click within your libary (this is within your project window) and click/hover on create. Once you have done that you move your cursor down until you get to InputActions which you click. You may name it however you wish but I called it playerControls.
+additionally right click within your libary  and click/hover create then click Folder and name this one scripts. then drag and drop playerControls into it.
+
+within the Input system:
+double click on playerControls this will open up a popup window. In which you will see that the Input system is split into three different catergories. 
+The first being action map: This is the overarching input in which acts as the connection between the actions. This is effectively the what is happening since this is used to combine all the actions into something cohesive and effective.
+The second being actions: This is where we will be assigning our keys/controls in and this area is effectively the where/when it happens since this is where the keys inputs will be registered and when those keys are pressed these actions will be called on.
+The third section are the action properties:This is where you will assign how the actions work and what type of actions will be used. Think of this as the why and how since this is the reason why the input system works whilst how the key are assigned to useful positions.
+
+So the first thing you will want to do is go to the action map section and click on the cross. This will add a new action map. You can name it whatever you like but remember this is what is happening. I named mine PlayerMovement.
+As you would have noticed when you click on the cross the actions and actions properties also gained some new additions. Firstly click on the drop down arrow(arrow facing down) on the new action here you will see a action called <no binding>. Delete it. The reason why is because this is their is a more effective method for our bindings.
+Once you have deleted the binding double click on the action and rename it whatever you like. I named mine WASD. Once you have finished renaming it go to the action properties section. 
+Change action type to pass through and then control type to vector2 since in this tutorial we will only be working on 2 axis and not all three. If you wish your character to jump or fly then use vector3 since it will give you extra options for that.
+Once you have done this click on the cross and add binding. Then click on the up binding and go to properties (Do NOT click T) click the empty bar then search mouse (look for the one with delta).
+Once you have completed that close the Inputsystem whilst making sure to save it. Then on the right hand of your screen click the tickbox for generate a C# class. This will generate a C# script that you do not need to open for this tutorial.
