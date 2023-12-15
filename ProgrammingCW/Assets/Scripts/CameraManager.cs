@@ -54,7 +54,7 @@ public class CameraManager : MonoBehaviour
     private void RotateCamera()
     {
         Vector3 rotation;
-        Quaternion targetRotation;//relised this can shorten the scrip a little bit.
+        Quaternion targetRotation;//realised this can shorten the scrip a little bit.
 
 
         lookAngle = lookAngle + (InputManager.cameraInputX * cameraLookSpeed);
@@ -82,7 +82,7 @@ public class CameraManager : MonoBehaviour
         if (Physics.SphereCast(cameraPivot.transform.position, cameraCollisionRadius, direction, out hit, Mathf.Abs(targetPosition), collisionLayers)) //had error where it couldn't convert transform to vector3 needed to add .position to camera pivot
         {
             float distance = Vector3.Distance(cameraPivot.position, hit.point);
-            targetPosition =- (distance - cameraCollisionOffset); //error had a capital S on Offset.
+            targetPosition =- (distance - cameraCollisionOffset); 
         }
 
         if (Mathf.Abs(targetPosition) < minimumCollisionOffSet) 
@@ -91,6 +91,6 @@ public class CameraManager : MonoBehaviour
         }
 
         cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, 0.2f);
-        cameraTransform.localPosition = cameraVectorPosition; //error did not put cameraVectorPosition as a variable
+        cameraTransform.localPosition = cameraVectorPosition; 
     }
 }
