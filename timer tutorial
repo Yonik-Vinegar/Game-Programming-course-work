@@ -18,7 +18,7 @@ If it asks you do not need to get the extra additions.
 
 Step 2 setting up the UI
 
-Timer
+Timer-how to make the timer
 To begin setting up the UI click on gameObject then search down the list until you see UI at which point click on UI then on canvas. Rename this canvas to UI.
 Right click on the UI canvas and go down to UI and press canvas again. Name this one Countdown.
 Then right click on Countdown then select UI - Image. Name this one timer.
@@ -26,11 +26,16 @@ Additionally put the non-filled circle into its source image. This is because th
 Next right click on timer and select UI- Image and name this one fill and put the filled image on the source image.
 Next right click on timer again and select - UI legacy text. name this just text and type into the text box in the inspector who long you want the timer to last for me I typed 60.
 
-GameOver
+GameOver-how to make the game over screen
+To begin setting up the game over screen you must first right click on the UI canvas in the hierarchy and go down to UI then select canvas. Name it GameOver
+Then right click on the GameOver canvas and select button (textmeshpro one) this will give you both a working button, which you should name its job for its restart but it can be quit or main menu, and modifiable text as a child.
+To change the text have the button show its children to do this press on the little down arrow (next to its name) after selecting it. I changed mine text to say restart.
+
 
 
 Step 3 Arrange the UI
-To do this double click on the original UI canvas this will take you to the large UI section, if it doesn't zoom out alot.
+To do this double click on the original UI canvas this will take you to the large UI section, if it doesn't, zoom out alot. 
+then using the move tool arrange everything how you wish it to look.
 
 
 
