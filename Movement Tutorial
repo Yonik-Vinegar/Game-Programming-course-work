@@ -153,6 +153,24 @@ public void HandleAllMovement()
         HandleMovement()
     }
 
-The next function we want to create 
+The next function we want to create is so that we can have the player character rotate (will be difficullt to see in a capsule so check inspector)
+To do this we must type:
+ private void HandleRotation()
+    {
+        Vector3 targetDirection = Vector3.zero;
+        
+        targetDirection = cameraObject.forward * inputManager.verticalInput; 
+        targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInput;
+        targetDirection.Normalize();
+        targetDirection.y = 0;
+
+        if (targetDirection == Vector3.zero)
+            targetDirection = transform.forward;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        transform.rotation = playerRotation;
+    }
 
 
