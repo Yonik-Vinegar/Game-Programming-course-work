@@ -5,13 +5,41 @@ This tutorial will be walking you through every step whilst explaining each step
 Before this tutorial can begin it is important to explain the difference between Unity's Inputsystem and the Inputmanager.
 The unity Inputmanager is a built in system which to call upon you would use code such as GetKeyDown or KeyCode and Input.GetButtonDown which can be used to assign keys, controller/gamepad bindings as well as vr and ar. joysticks and lastly touch screens.
 
-Whereas the Inputsystem uses a popup to assign keys within an action map, these assignments are added in the actions sections, and you then call upon either the actions. Which can contain multiple keys such as in this tutorial or the entire action map.
+Whereas the Inputsystem is a package addon that uses a popup to assign keys within an action map, these assignments are added in the actions sections, and you then call upon either the actions. Which can contain multiple keys such as in this tutorial or the entire action map.
 
 The benefits and negatives will be discussed throughout this tutorial and in slightly more detail at the end.
 
 STEP 1 setting up the input system
-The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager.
+The very first thing you want to do is open the unity project and go to the windows tab at the top and select package manager. This is so that we may install the inputsystem that we will be using for this tutorial. 
 
 Once in package manager:
 Make sure at the top of the manager it says package Unity Registry instead of package in project.
-Then using the search function search for 
+Then using the search bar search for InputSystem. once you have found it click install which resides in the bottom right of the window. Then wait until it has finished.
+
+Outside of package manager:
+Once it has right click within your libary (this is within your project window) and click/hover on create. Once you have done that you move your cursor down until you get to InputActions which you click. You may name it however you wish but I called it playerControls.
+additionally right click within your libary  and click/hover create then click Folder and name this one scripts. then drag and drop playerControls into it.
+
+within the Input system:
+double click on playerControls this will open up a popup window. In which you will see that the Input system is split into three different catergories. 
+The first being action map: This is the overarching input in which acts as the connection between the actions. This is effectively the what is happening since this is used to combine all the actions into something cohesive and effective.
+The second being actions: This is where we will be assigning our keys/controls in and this area is effectively the where/when it happens since this is where the keys inputs will be registered and when those keys are pressed these actions will be called on.
+The third section are the action properties:This is where you will assign how the actions work and what type of actions will be used. Think of this as the why and how since this is the reason why the input system works whilst how the key are assigned to useful positions.
+
+So the first thing you will want to do is go to the action map section and click on the cross. This will add a new action map. You can name it whatever you like but remember this is what is happening. I named mine PlayerMovement.
+As you would have noticed when you click on the cross the actions and actions properties also gained some new additions. Firstly click on the drop down arrow(arrow facing down) on the new action here you will see a action called <no binding>. Delete it. The reason why is because this is their is a more effective method for our bindings.
+Once you have deleted the binding double click on the action and rename it whatever you like. I named mine WASD. Once you have finished renaming it go to the action properties section. 
+Change action type to pass through and then control type to vector2 since in this tutorial we will only be working on 2 axis and not all three. If you wish your character to jump or fly then use vector3 since it will give you extra options for that.
+Once you have done this click on the cross and click up\down\left\right compsite. Then click on the up binding and go to properties (Do NOT click T) click the empty bar then search W (look for the one with Keyboard) then do the same for the rest of the bindings so that A, S, D correlates to  left, down, right. Or you can use different keys if you wish.
+Once you have completed that close the Inputsystem whilst making sure to save it. Then on the right hand of your screen click the tickbox for generate a C# class. This will generate a C# script that you do not need to open for this tutorial.
+
+
+STEP 2 Creating an Input Manager
+This is the script in which we will be calling the Input system
+
+Within the scripts folder:
+So create a new C# script the same way you created a folder previously but instead click on  C# scripts. Name this one InputManager (spacing and capitalisation is important)
+open this script in visual studio by double clicking it.
+
+
+
