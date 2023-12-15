@@ -99,11 +99,16 @@ To recitify this go to the Hierarchy and right click then move down and click cr
 
 Afterward go to the inspector and click add component. Once you have done this search for a rigidbody. Rigidbody gives phycis to the gameObject it is attached to. Make sure that Intrepolate is set to Intrepolate and Collison Detection is set to Continous.
 
-Now drag and drop the Input manager onto the casuples inspector.
+Now drag and drop the Input manager onto the casuples inspector and edit the values under it in the inspector until your happy with it.
 
 Once you have done this please create another C# script. Name this one what you like but this is the one that allows for movement and rotation. So I named my PlayerLocomotion.
 
-Just like the last one delete start and update. Then write the variables.
+Note // means a comment (this has no effect on code and is useful for notes.) and due to the length of this script I will be using it to explain certain parts.
+
+Just like the last one delete start and update. Then write the variables:
+InputManager inputManager;  // This is calling the InputManager we just created.
+Vector3 moveDirection;  //since this script will also have a part of the cameras code written into it then vector3 is used here.
+Transform camera
 
 
 
